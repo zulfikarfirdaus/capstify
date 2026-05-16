@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Noto+Serif:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:        #F5ECD7;
+  --cream-bg:     #FAF5EC;
+  --black:        #0C0C0C;
+  --dark:         #1A1A1A;
+  --text:         #2C2012;
+  --mid:          #8B7355;
+  --border:       rgba(44, 32, 18, 0.14);
+  --border-dark:  rgba(44, 32, 18, 0.28);
+  --font-display: 'Staatliches', Impact, sans-serif;
+  --font-serif:   'Noto Serif', Georgia, serif;
+  --container:    1320px;
+  --section-pad:  120px;
+  --radius:       2px;
+  --transition:   0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; background: var(--cream-bg); }
+
+body {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--cream-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+input, textarea, select { font-family: inherit; font-size: inherit; color: inherit; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 80px);
+}
+
+/* ── Typography ──────────────────────────────────────────── */
+.display {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 10rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.heading-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.heading-md {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.heading-sm {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.body-serif { font-family: var(--font-serif); font-size: 15px; line-height: 1.75; color: var(--text); }
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn-wa {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 18px 40px;
+  background: var(--black); color: var(--cream-bg);
+  font-family: var(--font-display); font-size: 16px; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1.5px solid var(--black); border-radius: var(--radius);
+  transition: background var(--transition), color var(--transition); cursor: pointer;
+}
+.btn-wa:hover { background: var(--dark); border-color: var(--dark); }
+
+.btn-marketplace {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 16px 40px;
+  background: transparent; color: var(--black);
+  font-family: var(--font-display); font-size: 15px; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1.5px solid var(--border-dark); border-radius: var(--radius);
+  transition: border-color var(--transition), background var(--transition); cursor: pointer;
+}
+.btn-marketplace:hover { border-color: var(--black); background: rgba(12,12,12,0.04); }
+
+.btn-outline {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 16px 40px;
+  background: transparent; color: var(--text);
+  font-family: var(--font-display); font-size: 15px; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1.5px solid var(--border-dark); border-radius: var(--radius);
+  transition: border-color var(--transition), color var(--transition), background var(--transition); cursor: pointer;
+}
+.btn-outline:hover:not(:disabled) { border-color: var(--text); color: var(--black); background: rgba(44,32,18,0.04); }
+.btn-outline:disabled { opacity: 0.4; cursor: default; }
+
+/* ── Layout helpers ──────────────────────────────────────── */
+.section { padding: var(--section-pad) 0; }
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; gap: 24px; }
+.divider { width: 100%; height: 1px; background: var(--border); }
+
+/* ── Product Grid ────────────────────────────────────────── */
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 20px; }
+@media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px)  { .products-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 14px; } }
+@media (max-width: 400px)  { .products-grid { grid-template-columns: 1fr; } }
+
+/* ── Reveal animation ────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── WhatsApp FAB ────────────────────────────────────────── */
+.wa-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 90;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--dark);
+  color: rgba(250, 245, 236, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(250, 245, 236, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+}
+.wa-fab:hover {
+  transform: scale(1.06);
+  color: rgba(250, 245, 236, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+}
+
+/* ── Empty state ─────────────────────────────────────────── */
+.empty-state { text-align: center; padding: 80px 20px; color: var(--mid); }
+.empty-state p { font-family: var(--font-display); font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; }

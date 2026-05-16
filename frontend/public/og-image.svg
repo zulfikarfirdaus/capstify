@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0C0C0C"/>
+      <stop offset="100%" stop-color="#2C2012"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle border -->
+  <rect x="32" y="32" width="1136" height="566" fill="none" stroke="rgba(245,236,215,0.1)" stroke-width="1"/>
+
+  <!-- Large C mark — left side watermark -->
+  <g fill="rgba(245,236,215,0.06)" transform="translate(-80, 40) scale(6)">
+    <path d="M 82 28 C 78 16, 66 8, 50 8 C 26 8, 8 26, 8 50 C 8 74, 26 92, 50 92 C 66 92, 78 84, 82 72 L 72 72 C 68 80, 60 85, 50 85 C 30 85, 16 69, 16 50 C 16 31, 30 15, 50 15 C 60 15, 68 20, 72 28 Z"/>
+    <path d="M 74 34 C 70 24, 61 17, 50 17 C 32 17, 18 32, 18 50 C 18 68, 32 83, 50 83 C 61 83, 70 76, 74 66 L 64 66 C 61 72, 56 76, 50 76 C 36 76, 25 64, 25 50 C 25 36, 36 24, 50 24 C 56 24, 61 28, 64 34 Z"/>
+  </g>
+
+  <!-- Small C mark — top left -->
+  <g fill="#F5ECD7" transform="translate(64, 60) scale(0.72)">
+    <path d="M 82 28 C 78 16, 66 8, 50 8 C 26 8, 8 26, 8 50 C 8 74, 26 92, 50 92 C 66 92, 78 84, 82 72 L 72 72 C 68 80, 60 85, 50 85 C 30 85, 16 69, 16 50 C 16 31, 30 15, 50 15 C 60 15, 68 20, 72 28 Z"/>
+    <path d="M 74 34 C 70 24, 61 17, 50 17 C 32 17, 18 32, 18 50 C 18 68, 32 83, 50 83 C 61 83, 70 76, 74 66 L 64 66 C 61 72, 56 76, 50 76 C 36 76, 25 64, 25 50 C 25 36, 36 24, 50 24 C 56 24, 61 28, 64 34 Z"/>
+    <path d="M 10 44 C 6 46, 4 48, 4 50 C 4 52, 6 54, 10 56 L 12 53 C 9 52, 8 51, 8 50 C 8 49, 9 48, 12 47 Z"/>
+  </g>
+
+  <!-- CAPSTIFY wordmark -->
+  <text
+    x="64" y="420"
+    font-family="Impact, Arial Black, sans-serif"
+    font-size="168"
+    font-weight="900"
+    letter-spacing="8"
+    fill="#F5ECD7"
+  >CAPSTIFY</text>
+
+  <!-- Tagline -->
+  <text
+    x="66" y="488"
+    font-family="Georgia, serif"
+    font-size="28"
+    font-style="italic"
+    fill="rgba(245,236,215,0.55)"
+    letter-spacing="1"
+  >Crafted for the ones who lead.</text>
+
+  <!-- Accent line -->
+  <line x1="64" y1="310" x2="200" y2="310" stroke="rgba(245,236,215,0.3)" stroke-width="1.5"/>
+</svg>

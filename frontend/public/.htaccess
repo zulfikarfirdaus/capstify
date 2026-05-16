@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Let API requests pass through to the api folder
+  RewriteRule ^api/ - [L]
+
+  # Serve existing files/dirs directly
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Everything else → React index.html
+  RewriteRule . /index.html [L]
+</IfModule>

@@ -1,0 +1,43 @@
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.scroll-indicator__label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(250, 245, 236, 0.55);
+}
+
+.scroll-indicator__track {
+  width: 1.5px;
+  height: 40px;
+  background: rgba(250, 245, 236, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-indicator__dot {
+  width: 1.5px;
+  height: 14px;
+  background: rgba(250, 245, 236, 0.8);
+  position: absolute;
+  top: 0;
+  animation: scroll-drop 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes scroll-drop {
+  0%   { transform: translateY(-14px); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(40px); opacity: 0; }
+}

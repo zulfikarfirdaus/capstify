@@ -1,0 +1,18 @@
+# Dependencies
+frontend/node_modules/
+api/vendor/
+
+# Build output
+frontend/dist/
+
+# Environment variables — never commit these
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+api/.env
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
