@@ -38,7 +38,7 @@ export default function App() {
       <Routes>
         <Route path="/"               element={<PublicLayout><Home /></PublicLayout>} />
         <Route path="/category/:slug" element={<PublicLayout><Category /></PublicLayout>} />
-        <Route path="/product/:id"    element={<PublicLayout><Product /></PublicLayout>} />
+        <Route path="/product/:slug"  element={<PublicLayout><Product /></PublicLayout>} />
         <Route path="/search"         element={<PublicLayout><Search /></PublicLayout>} />
         <Route path="/admin/login"    element={<AdminLogin />} />
         <Route path="/admin/*"        element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />

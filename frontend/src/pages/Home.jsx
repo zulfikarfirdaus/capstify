@@ -84,7 +84,7 @@ function CTABand({ hero }) {
     <section className="cta-band">
       <div className="cta-band__bg">
         <img
-          src="https://images.unsplash.com/photo-1691256676359-20e5c6d4bc92?w=1920&q=85&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1681583663936-7e213cca9d72?w=1920&q=85&auto=format&fit=crop"
           alt=""
           loading="lazy"
         />

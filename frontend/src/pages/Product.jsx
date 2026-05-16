@@ -11,18 +11,18 @@ function formatPrice(price) {
 }
 
 export default function Product() {
-  const { id } = useParams()
+  const { slug } = useParams()
   const navigate = useNavigate()
   const [product, setProduct]   = useState(null)
   const [waNumber, setWaNumber] = useState('6281234567890')
   const [activeImg, setActiveImg] = useState(0)
   const [loading, setLoading]   = useState(true)
 
-  usePageView(`/product/${id}`, parseInt(id))
+  usePageView(`/product/${slug}`)
 
   useEffect(() => {
     setLoading(true)
-    fetchProduct(id)
+    fetchProduct(slug)
       .then(p => { setProduct(p); setActiveImg(0) })
       .catch(() => {})
       .finally(() => setLoading(false))
@@ -30,21 +30,21 @@ export default function Product() {
     fetchHero()
       .then(d => { if (d?.whatsapp_number) setWaNumber(d.whatsapp_number) })
       .catch(() => {})
-  }, [id])
+  }, [slug])
 
   const handleWA = () => {
-    trackClick(parseInt(id), 'whatsapp')
+    if (product?.id) trackClick(product.id, 'whatsapp')
     const msg = product?.whatsapp_message || `Hi! I'm interested in ${product?.name}`
     window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank')
   }
 
   const handleShopee = () => {
-    trackClick(parseInt(id), 'shopee')
+    if (product?.id) trackClick(product.id, 'shopee')
     window.open(product.shopee_url, '_blank')
   }
 
   const handleTiktok = () => {
-    trackClick(parseInt(id), 'tiktok')
+    if (product?.id) trackClick(product.id, 'tiktok')
     window.open(product.tiktok_url, '_blank')
   }
 

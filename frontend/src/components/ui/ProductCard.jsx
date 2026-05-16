@@ -11,7 +11,7 @@ export default function ProductCard({ product }) {
   const image = product.images?.[0] || null
 
   return (
-    <article className="product-card" onClick={() => navigate(`/product/${product.id}`)}>
+    <article className="product-card" onClick={() => navigate(`/product/${product.slug}`)}>
       <div className="product-card__img-wrap">
         {image ? (
           <img src={image} alt={product.name} loading="lazy" />

@@ -14,20 +14,24 @@ const FIELDS = [
 
 export default function AdminHero() {
   const [settings,  setSettings]  = useState({})
-  const [msg,       setMsg]       = useState('')
+  const [msg,       setMsg]       = useState({ text: '', type: 'success' })
   const [uploading, setUploading] = useState(false)
 
   useEffect(() => {
     adminFetchSettings().then(setSettings).catch(() => {})
   }, [])
 
+  const flash = (text, type = 'success') => {
+    setMsg({ text, type })
+    setTimeout(() => setMsg({ text: '', type: 'success' }), 3000)
+  }
+
   const save = async () => {
     try {
       await adminSaveSettings(settings)
-      setMsg('Settings saved.')
-      setTimeout(() => setMsg(''), 3000)
+      flash('Settings saved.')
     } catch {
-      setMsg('Error saving.')
+      flash('Error saving.', 'error')
     }
   }
 
@@ -39,7 +43,7 @@ export default function AdminHero() {
       const url = await uploadImage(file)
       setSettings(s => ({ ...s, hero_image: url }))
     } catch {
-      setMsg('Image upload failed.')
+      flash('Image upload failed.', 'error')
     } finally {
       setUploading(false)
     }
@@ -53,7 +57,7 @@ export default function AdminHero() {
 
       <div className="admin-form-panel">
         <h3>Hero Poster</h3>
-        {msg && <div className="form-success">{msg}</div>}
+        {msg.text && <div className={msg.type === 'error' ? 'form-error' : 'form-success'}>{msg.text}</div>}
 
         <div className="form-group" style={{ marginBottom: 24 }}>
           <label>Hero Image</label>

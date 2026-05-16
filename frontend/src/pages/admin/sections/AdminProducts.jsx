@@ -22,7 +22,7 @@ export default function AdminProducts() {
   const [form,       setForm]       = useState(EMPTY)
   const [editId,     setEditId]     = useState(null)
   const [showForm,   setShowForm]   = useState(false)
-  const [msg,        setMsg]        = useState('')
+  const [msg,        setMsg]        = useState({ text: '', type: 'success' })
   const [uploading,  setUploading]  = useState(false)
 
   const load = () => {
@@ -32,7 +32,10 @@ export default function AdminProducts() {
 
   useEffect(() => { load() }, [])
 
-  const flash = (m) => { setMsg(m); setTimeout(() => setMsg(''), 3000) }
+  const flash = (text, type = 'success') => {
+    setMsg({ text, type })
+    setTimeout(() => setMsg({ text: '', type: 'success' }), 3000)
+  }
 
   const openNew = () => { setForm(EMPTY); setEditId(null); setShowForm(true) }
 
@@ -65,7 +68,7 @@ export default function AdminProducts() {
       const urls = await Promise.all(files.map(uploadImage))
       setForm(f => ({ ...f, images: [...f.images, ...urls] }))
     } catch {
-      flash('Image upload failed.')
+      flash('Image upload failed.', 'error')
     } finally {
       setUploading(false)
       e.target.value = ''
@@ -83,7 +86,7 @@ export default function AdminProducts() {
       setShowForm(false)
       load()
     } catch {
-      flash('Error saving product.')
+      flash('Error saving product.', 'error')
     }
   }
 
@@ -100,7 +103,7 @@ export default function AdminProducts() {
         <button className="btn-admin-add" onClick={openNew}>+ Add Product</button>
       </div>
 
-      {msg && <div className="form-success">{msg}</div>}
+      {msg.text && <div className={msg.type === 'error' ? 'form-error' : 'form-success'}>{msg.text}</div>}
 
       {showForm && (
         <div className="admin-form-panel">
@@ -134,8 +137,8 @@ export default function AdminProducts() {
             <div className="form-group form-group--full">
               <label>Product Images (up to 5)</label>
               <div className="upload-field">
-                <input type="file" accept="image/*" multiple onChange={handleImageUpload} disabled={uploading || form.images.length >= 5} />
-                <span className="upload-hint">{uploading ? 'Uploading...' : `${form.images.length}/5 images`}</span>
+                <input type="file" accept="image/*" multiple onChange={handleImageUpload} disabled={uploading || form.images.length >= 7} />
+                <span className="upload-hint">{uploading ? 'Uploading...' : `${form.images.length}/7 images`}</span>
                 <div className="images-grid">
                   {form.images.map((url, i) => (
                     <div key={i} className="image-thumb-wrap">

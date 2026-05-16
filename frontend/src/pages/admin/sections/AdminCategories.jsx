@@ -12,14 +12,17 @@ export default function AdminCategories() {
   const [form,       setForm]       = useState(EMPTY)
   const [editId,     setEditId]     = useState(null)
   const [showForm,   setShowForm]   = useState(false)
-  const [msg,        setMsg]        = useState('')
+  const [msg,        setMsg]        = useState({ text: '', type: 'success' })
   const [uploading,  setUploading]  = useState(false)
 
   const load = () => adminFetchCategories().then(setCategories).catch(() => {})
 
   useEffect(() => { load() }, [])
 
-  const flash = (m) => { setMsg(m); setTimeout(() => setMsg(''), 3000) }
+  const flash = (text, type = 'success') => {
+    setMsg({ text, type })
+    setTimeout(() => setMsg({ text: '', type: 'success' }), 3000)
+  }
 
   const openEdit = (c) => {
     setForm({ name: c.name, slug: c.slug, description: c.description || '', image: c.image || '', sort_order: c.sort_order })
@@ -34,7 +37,7 @@ export default function AdminCategories() {
     try {
       const url = await uploadImage(file)
       setForm(f => ({ ...f, image: url }))
-    } catch { flash('Upload failed.') }
+    } catch { flash('Upload failed.', 'error') }
     finally { setUploading(false); e.target.value = '' }
   }
 
@@ -43,7 +46,7 @@ export default function AdminCategories() {
       const payload = editId ? form : { ...form, slug: form.slug || toSlug(form.name) }
       await adminSaveCategory(payload, editId)
       flash('Saved.'); setShowForm(false); load()
-    } catch { flash('Error saving.') }
+    } catch { flash('Error saving.', 'error') }
   }
 
   const del = async (id) => {
@@ -52,7 +55,7 @@ export default function AdminCategories() {
       await adminDeleteCategory(id)
       load()
     } catch {
-      flash('Cannot delete — category may have products.')
+      flash('Cannot delete — category may have products.', 'error')
     }
   }
 
@@ -69,7 +72,7 @@ export default function AdminCategories() {
         <button className="btn-admin-add" onClick={openNew}>+ Add Category</button>
       </div>
 
-      {msg && <div className="form-success">{msg}</div>}
+      {msg.text && <div className={msg.type === 'error' ? 'form-error' : 'form-success'}>{msg.text}</div>}
 
       {showForm && (
         <div className="admin-form-panel">
