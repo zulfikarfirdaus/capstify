@@ -9,6 +9,7 @@ import './Home.css'
 
 function HeroSection({ hero, heroLoaded }) {
   const [imgLoaded, setImgLoaded] = useState(false)
+  const contentVisible = heroLoaded && (!hero?.hero_image || imgLoaded)
 
   return (
     <section className="hero">
@@ -20,12 +21,12 @@ function HeroSection({ hero, heroLoaded }) {
             className={imgLoaded ? 'loaded' : ''}
             onLoad={() => setImgLoaded(true)}
           />
-        ) : (
+        ) : heroLoaded ? (
           <div className="hero__bg-fallback" />
-        )}
+        ) : null}
       </div>
       <div className="hero__overlay" aria-hidden="true" />
-      <div className={`hero__content${heroLoaded ? ' hero__content--visible' : ''}`}>
+      <div className={`hero__content${contentVisible ? ' hero__content--visible' : ''}`}>
         <span className="hero__eyebrow">New Drop 2026</span>
         <h1 className="hero__headline">
           {hero?.hero_article_name || 'The Season\'s Crown'}
@@ -118,14 +119,14 @@ function CTABand({ hero }) {
         <div className="cta-band__actions">
           {channels.length > 0 ? channels.map(c => (
             <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer" className="cta-band__btn">
-              {c.label} →
+              {c.label}
             </a>
           )) : (
             <>
-              <span className="cta-band__btn">WhatsApp →</span>
-              <span className="cta-band__btn">Shopee →</span>
-              <span className="cta-band__btn">Tokopedia →</span>
-              <span className="cta-band__btn">TikTok Shop →</span>
+              <span className="cta-band__btn">WhatsApp</span>
+              <span className="cta-band__btn">Shopee</span>
+              <span className="cta-band__btn">Tokopedia</span>
+              <span className="cta-band__btn">TikTok Shop</span>
             </>
           )}
         </div>

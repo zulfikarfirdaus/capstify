@@ -21,10 +21,14 @@
   object-fit: cover;
   object-position: center top;
   transform: scale(1.0);
-  transition: transform 8s ease;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 8s ease;
 }
 
-.hero__bg img.loaded { transform: scale(1.05); }
+.hero__bg img.loaded {
+  opacity: 1;
+  transform: scale(1.05);
+}
 
 @media (max-width: 768px) {
   .hero__bg img {
