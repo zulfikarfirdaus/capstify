@@ -18,7 +18,7 @@ export default function Footer() {
       <div className="footer__top container">
         <div className="footer__brand">
           <img src={logoPng} alt="Capstify" className="footer__logo" />
-          <p className="footer__tagline">Crafted for the ones who lead.</p>
+          <p className="footer__tagline">Premium Materials. Timeless Shape.</p>
         </div>
         <nav className="footer__nav" aria-label="Footer navigation">
           {CATEGORIES.map(cat => (

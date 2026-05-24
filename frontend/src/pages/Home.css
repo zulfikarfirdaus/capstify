@@ -55,6 +55,13 @@
   left: clamp(24px, 6vw, 100px);
   max-width: 580px;
   z-index: 2;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.hero__content--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero__eyebrow {
@@ -160,10 +167,38 @@
 
 .cat-strip__item:hover .cat-strip__img img { transform: scale(1.06); }
 
-.cat-strip__placeholder {
+.cat-strip__coming-soon {
   width: 100%;
   height: 100%;
-  background: #2C2012;
+  background: #131110;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0px,
+    transparent 14px,
+    rgba(255, 255, 255, 0.03) 14px,
+    rgba(255, 255, 255, 0.03) 15px
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cat-strip__coming-soon__rule {
+  width: 28px;
+  height: 1px;
+  background: rgba(250, 245, 236, 0.18);
+}
+
+.cat-strip__coming-soon__text {
+  font-family: var(--font-display);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(250, 245, 236, 0.28);
+  text-align: center;
+  line-height: 1.8;
 }
 
 .cat-strip__overlay {

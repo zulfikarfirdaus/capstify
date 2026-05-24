@@ -9,7 +9,7 @@ const FIELDS = [
   { key: 'instagram_url',     label: 'Instagram URL',   placeholder: 'https://instagram.com/...' },
   { key: 'shopee_store_url',  label: 'Shopee Store URL',placeholder: 'https://shopee.co.id/...' },
   { key: 'tiktok_url',        label: 'TikTok URL',      placeholder: 'https://tiktok.com/...' },
-  { key: 'footer_tagline',    label: 'Footer Tagline',  placeholder: 'Crafted for the ones who lead.' },
+  { key: 'footer_tagline',    label: 'Footer Tagline',  placeholder: 'Premium Materials. Timeless Shape.' },
 ]
 
 export default function AdminHero() {

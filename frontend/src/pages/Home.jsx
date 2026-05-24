@@ -7,7 +7,7 @@ import ProductCard from '../components/ui/ProductCard'
 import ScrollIndicator from '../components/ui/ScrollIndicator'
 import './Home.css'
 
-function HeroSection({ hero }) {
+function HeroSection({ hero, heroLoaded }) {
   const [imgLoaded, setImgLoaded] = useState(false)
 
   return (
@@ -25,13 +25,13 @@ function HeroSection({ hero }) {
         )}
       </div>
       <div className="hero__overlay" aria-hidden="true" />
-      <div className="hero__content">
-        <span className="hero__eyebrow">New Collection</span>
+      <div className={`hero__content${heroLoaded ? ' hero__content--visible' : ''}`}>
+        <span className="hero__eyebrow">New Drop 2026</span>
         <h1 className="hero__headline">
           {hero?.hero_article_name || 'The Season\'s Crown'}
         </h1>
         <p className="hero__subcopy">
-          {hero?.hero_sub_copy || 'Headwear crafted for the ones who lead.'}
+          {hero?.hero_sub_copy || 'Premium Materials. Timeless Shape.'}
         </p>
         <Link to="/category/truckers" className="hero__cta">
           {hero?.hero_button_label || 'Explore Collection'}
@@ -42,7 +42,22 @@ function HeroSection({ hero }) {
   )
 }
 
-function CategoryStrip({ categories }) {
+function ComingSoonThumb() {
+  return (
+    <div className="cat-strip__coming-soon">
+      <div className="cat-strip__coming-soon__rule" />
+      <span className="cat-strip__coming-soon__text">Coming<br />Soon</span>
+      <div className="cat-strip__coming-soon__rule" />
+    </div>
+  )
+}
+
+function CategoryStrip({ categories, products }) {
+  const catImages = products.reduce((acc, p) => {
+    if (!acc[p.category_slug] && p.images?.[0]) acc[p.category_slug] = p.images[0]
+    return acc
+  }, {})
+
   return (
     <section className="section cat-strip">
       <div className="container">
@@ -50,19 +65,22 @@ function CategoryStrip({ categories }) {
           <h2 className="heading-md reveal">Shop By Category</h2>
         </div>
         <div className="cat-strip__grid reveal">
-          {categories.map(cat => (
-            <Link key={cat.id} to={`/category/${cat.slug}`} className="cat-strip__item">
-              <div className="cat-strip__img">
-                {cat.image ? (
-                  <img src={cat.image} alt={cat.name} loading="lazy" />
-                ) : (
-                  <div className="cat-strip__placeholder" />
-                )}
-                <div className="cat-strip__overlay" />
-              </div>
-              <span className="cat-strip__name">{cat.name}</span>
-            </Link>
-          ))}
+          {categories.map(cat => {
+            const thumb = catImages[cat.slug]
+            return (
+              <Link key={cat.id} to={`/category/${cat.slug}`} className="cat-strip__item">
+                <div className="cat-strip__img">
+                  {thumb ? (
+                    <img src={thumb} alt={cat.name} loading="lazy" />
+                  ) : (
+                    <ComingSoonThumb />
+                  )}
+                  <div className="cat-strip__overlay" />
+                </div>
+                <span className="cat-strip__name">{cat.name}</span>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -75,8 +93,9 @@ function CTABand({ hero }) {
     : null
 
   const channels = [
-    { label: 'WhatsApp', href: whatsappUrl },
-    { label: 'Shopee',   href: hero?.shopee_store_url || null },
+    { label: 'WhatsApp',  href: whatsappUrl },
+    { label: 'Shopee',    href: hero?.shopee_store_url || null },
+    { label: 'Tokopedia', href: hero?.tokopedia_url || null },
     { label: 'TikTok Shop', href: hero?.tiktok_url || null },
   ].filter(c => c.href)
 
@@ -84,7 +103,7 @@ function CTABand({ hero }) {
     <section className="cta-band">
       <div className="cta-band__bg">
         <img
-          src="https://images.unsplash.com/photo-1681583663936-7e213cca9d72?w=1920&q=85&auto=format&fit=crop"
+          src="https://tyfrdfizecqstrsgopcf.supabase.co/storage/v1/object/public/product-images/cta-band-bg.png"
           alt=""
           loading="lazy"
         />
@@ -94,7 +113,7 @@ function CTABand({ hero }) {
         <span className="cta-band__eyebrow">Order Direct</span>
         <h2 className="cta-band__headline">Find Us<br />Where You Shop</h2>
         <p className="cta-band__sub">
-          Reach out on WhatsApp or shop us on Shopee and TikTok — we're always ready.
+          Reach out on WhatsApp or shop us on Shopee, Tokopedia, and TikTok — we're always ready.
         </p>
         <div className="cta-band__actions">
           {channels.length > 0 ? channels.map(c => (
@@ -105,6 +124,7 @@ function CTABand({ hero }) {
             <>
               <span className="cta-band__btn">WhatsApp →</span>
               <span className="cta-band__btn">Shopee →</span>
+              <span className="cta-band__btn">Tokopedia →</span>
               <span className="cta-band__btn">TikTok Shop →</span>
             </>
           )}
@@ -115,22 +135,25 @@ function CTABand({ hero }) {
 }
 
 export default function Home() {
-  const [hero, setHero]             = useState(null)
-  const [categories, setCategories] = useState([])
-  const [featured, setFeatured]     = useState([])
+  const [hero, setHero]               = useState(null)
+  const [heroLoaded, setHeroLoaded]   = useState(false)
+  const [categories, setCategories]   = useState([])
+  const [featured, setFeatured]       = useState([])
+  const [allProducts, setAllProducts] = useState([])
   const revealRef = useReveal()
 
   usePageView('/')
 
   useEffect(() => {
-    fetchHero().then(setHero).catch(() => {})
+    fetchHero().then(data => { setHero(data); setHeroLoaded(true) }).catch(() => setHeroLoaded(true))
     fetchCategories().then(setCategories).catch(() => {})
     fetchProducts({ featured: 1, limit: 4 }).then(setFeatured).catch(() => {})
+    fetchProducts().then(setAllProducts).catch(() => {})
   }, [])
 
   return (
     <div ref={revealRef}>
-      <HeroSection hero={hero} />
+      <HeroSection hero={hero} heroLoaded={heroLoaded} />
 
       {featured.length > 0 && (
         <section className="section">
@@ -150,7 +173,7 @@ export default function Home() {
         </section>
       )}
 
-      <CategoryStrip categories={categories} />
+      <CategoryStrip categories={categories} products={allProducts} />
 
       <CTABand hero={hero} />
     </div>
