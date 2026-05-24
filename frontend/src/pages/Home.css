@@ -324,4 +324,5 @@
 @media (max-width: 768px) {
   .hero__headline { font-size: clamp(3rem, 12vw, 6rem); }
   .cta-band__actions { flex-direction: column; align-items: flex-start; }
+  .cta-band__bg img { object-position: 70% center; }
 }

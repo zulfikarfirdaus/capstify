@@ -112,9 +112,9 @@ function CTABand({ hero }) {
       <div className="cta-band__overlay" />
       <div className="cta-band__content container">
         <span className="cta-band__eyebrow">Order Direct</span>
-        <h2 className="cta-band__headline">Find Us<br />Where You Shop</h2>
+        <h2 className="cta-band__headline">Wear The<br />Culture</h2>
         <p className="cta-band__sub">
-          Reach out on WhatsApp or shop us on Shopee, Tokopedia, and TikTok — we're always ready.
+          Shop premium headwear directly through WhatsApp, Shopee, Tokopedia, and TikTok Shop — wherever you scroll, we're there.
         </p>
         <div className="cta-band__actions">
           {channels.length > 0 ? channels.map(c => (
