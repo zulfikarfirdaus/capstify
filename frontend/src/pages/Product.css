@@ -209,4 +209,5 @@
   .product-gallery { min-width: 0; }
   .product-info { min-width: 0; }
   .product-gallery__thumb { width: 60px; height: 75px; }
+  .product-info__marketplaces { grid-template-columns: 1fr; }
 }
