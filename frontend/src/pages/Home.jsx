@@ -67,7 +67,7 @@ function CategoryStrip({ categories, products }) {
         </div>
         <div className="cat-strip__grid reveal">
           {categories.map(cat => {
-            const thumb = catImages[cat.slug]
+            const thumb = cat.image || catImages[cat.slug]
             return (
               <Link key={cat.id} to={`/category/${cat.slug}`} className="cat-strip__item">
                 <div className="cat-strip__img">
