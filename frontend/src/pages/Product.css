@@ -136,6 +136,7 @@
 .product-specs {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .product-specs tr {
@@ -159,6 +160,8 @@
   line-height: 1.6;
   color: var(--text);
   padding: 10px 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .product-features {
@@ -201,6 +204,9 @@
 }
 
 @media (max-width: 768px) {
-  .product-layout { grid-template-columns: 1fr; gap: 32px; }
+  .product-layout { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .product-page { padding-top: 80px; }
+  .product-gallery { min-width: 0; }
+  .product-info { min-width: 0; }
+  .product-gallery__thumb { width: 60px; height: 75px; }
 }
