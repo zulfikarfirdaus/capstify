@@ -13,10 +13,11 @@ function formatPrice(price) {
 export default function Product() {
   const { slug } = useParams()
   const navigate = useNavigate()
-  const [product, setProduct]   = useState(null)
-  const [waNumber, setWaNumber] = useState('6281234567890')
-  const [activeImg, setActiveImg] = useState(0)
-  const [loading, setLoading]   = useState(true)
+  const [product, setProduct]       = useState(null)
+  const [waNumber, setWaNumber]     = useState('6281234567890')
+  const [tokopediaUrl, setTokopediaUrl] = useState(null)
+  const [activeImg, setActiveImg]   = useState(0)
+  const [loading, setLoading]       = useState(true)
 
   usePageView(`/product/${slug}`)
 
@@ -28,7 +29,10 @@ export default function Product() {
       .finally(() => setLoading(false))
 
     fetchHero()
-      .then(d => { if (d?.whatsapp_number) setWaNumber(d.whatsapp_number) })
+      .then(d => {
+        if (d?.whatsapp_number) setWaNumber(d.whatsapp_number)
+        if (d?.tokopedia_url) setTokopediaUrl(d.tokopedia_url)
+      })
       .catch(() => {})
   }, [slug])
 
@@ -46,6 +50,11 @@ export default function Product() {
   const handleTiktok = () => {
     if (product?.id) trackClick(product.id, 'tiktok')
     window.open(product.tiktok_url, '_blank')
+  }
+
+  const handleTokopedia = () => {
+    if (product?.id) trackClick(product.id, 'tokopedia')
+    window.open(tokopediaUrl, '_blank')
   }
 
   if (loading) return <div className="product-loading container"><p>Loading...</p></div>
@@ -118,16 +127,24 @@ export default function Product() {
                 <MessageCircle size={18} />
                 Order via WhatsApp
               </button>
-              <button className="btn-outline" onClick={product.shopee_url ? handleShopee : undefined} disabled={!product.shopee_url}>
-                <ShoppingBag size={16} />
-                Buy on Shopee
-              </button>
-              <button className="btn-outline" onClick={product.tiktok_url ? handleTiktok : undefined} disabled={!product.tiktok_url}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
-                </svg>
-                Buy on TikTok Shop
-              </button>
+              <div className="product-info__marketplaces">
+                <button className="btn-outline" onClick={product.shopee_url ? handleShopee : undefined} disabled={!product.shopee_url}>
+                  <ShoppingBag size={16} />
+                  Shopee
+                </button>
+                <button className="btn-outline" onClick={tokopediaUrl ? handleTokopedia : undefined} disabled={!tokopediaUrl}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                  </svg>
+                  Tokopedia
+                </button>
+                <button className="btn-outline" onClick={product.tiktok_url ? handleTiktok : undefined} disabled={!product.tiktok_url}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
+                  </svg>
+                  TikTok
+                </button>
+              </div>
             </div>
           </div>
         </div>

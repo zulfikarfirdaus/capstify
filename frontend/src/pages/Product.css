@@ -194,6 +194,12 @@
   gap: 12px;
 }
 
+.product-info__marketplaces {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
 @media (max-width: 768px) {
   .product-layout { grid-template-columns: 1fr; gap: 32px; }
   .product-page { padding-top: 80px; }
