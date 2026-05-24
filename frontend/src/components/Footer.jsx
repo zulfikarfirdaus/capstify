@@ -39,7 +39,7 @@ export default function Footer() {
       </div>
       <div className="footer__bottom container">
         <span className="footer__copy">&copy; {year} Capstify. All rights reserved.</span>
-        <NavLink to="/admin/login" className="footer__admin-link">Admin</NavLink>
+        <a href="https://spladestudio.com" target="_blank" rel="noopener noreferrer" className="footer__admin-link">Built by Splade Studio</a>
       </div>
     </footer>
   )
