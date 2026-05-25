@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "capstify",
+  "compatibility_date": "2026-05-25",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  "build": {
+    "command": "cd frontend && npm install && npm run build"
+  },
+  "assets": {
+    "directory": "frontend/dist"
+  }
+}
