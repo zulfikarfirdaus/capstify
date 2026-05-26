@@ -2,21 +2,27 @@ import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { Search, X, Menu } from 'lucide-react'
 import logoPng from '../assets/logo-capstify.png'
+import { fetchActiveCategorySlugs } from '../api'
 import './Navbar.css'
 
 const CATEGORIES = [
   { name: 'Truckers', slug: 'truckers' },
-  { name: 'Classic',  slug: 'classic' },
   { name: 'A Frame',  slug: 'a-frame' },
+  { name: 'Classic',  slug: 'classic' },
   { name: 'Baseball', slug: 'baseball' },
   { name: 'Snapback', slug: 'snapback' },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled]       = useState(false)
-  const [menuOpen, setMenuOpen]       = useState(false)
-  const [searchOpen, setSearchOpen]   = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [scrolled, setScrolled]           = useState(false)
+  const [menuOpen, setMenuOpen]           = useState(false)
+  const [searchOpen, setSearchOpen]       = useState(false)
+  const [searchQuery, setSearchQuery]     = useState('')
+  const [activeSlugs, setActiveSlugs]     = useState(new Set())
+
+  useEffect(() => {
+    fetchActiveCategorySlugs().then(setActiveSlugs).catch(() => {})
+  }, [])
   const navigate  = useNavigate()
   const location  = useLocation()
   const isHome    = location.pathname === '/'
@@ -52,15 +58,22 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <nav className="navbar__nav" aria-label="Product categories">
-          {CATEGORIES.map(cat => (
-            <NavLink
-              key={cat.slug}
-              to={`/category/${cat.slug}`}
-              className={({ isActive }) => `navbar__link${isActive ? ' active' : ''}`}
-            >
-              {cat.name}
-            </NavLink>
-          ))}
+          {CATEGORIES.map(cat => {
+            const active = activeSlugs.has(cat.slug)
+            return active ? (
+              <NavLink
+                key={cat.slug}
+                to={`/category/${cat.slug}`}
+                className={({ isActive }) => `navbar__link${isActive ? ' active' : ''}`}
+              >
+                {cat.name}
+              </NavLink>
+            ) : (
+              <span key={cat.slug} className="navbar__link navbar__link--disabled">
+                {cat.name}
+              </span>
+            )
+          })}
         </nav>
 
         {/* Actions */}
@@ -102,16 +115,23 @@ export default function Navbar() {
           <X size={24} />
         </button>
         <nav className="navbar__overlay-nav">
-          {CATEGORIES.map(cat => (
-            <NavLink
-              key={cat.slug}
-              to={`/category/${cat.slug}`}
-              className="navbar__overlay-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              {cat.name}
-            </NavLink>
-          ))}
+          {CATEGORIES.map(cat => {
+            const active = activeSlugs.has(cat.slug)
+            return active ? (
+              <NavLink
+                key={cat.slug}
+                to={`/category/${cat.slug}`}
+                className="navbar__overlay-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {cat.name}
+              </NavLink>
+            ) : (
+              <span key={cat.slug} className="navbar__overlay-link navbar__overlay-link--disabled">
+                {cat.name}
+              </span>
+            )
+          })}
         </nav>
       </div>
     </header>

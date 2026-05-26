@@ -54,6 +54,12 @@
 
 .footer__link:hover { color: var(--cream); }
 
+.footer__link--disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
 .footer__social {
   display: flex;
   justify-content: flex-end;
@@ -108,7 +114,7 @@
   }
   .footer__brand { align-items: center; }
   .footer__logo { align-self: center; }
-  .footer__nav { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .footer__nav { flex-direction: column; align-items: center; }
   .footer__social { justify-content: center; }
   .footer__bottom { flex-direction: column; gap: 10px; text-align: center; }
 }

@@ -12,6 +12,12 @@ export const fetchCategories = async () => {
   return data || []
 }
 
+export const fetchActiveCategorySlugs = async () => {
+  const { data } = await supabase.from('products').select('categories(slug)')
+  const slugs = new Set((data || []).map(p => p.categories?.slug).filter(Boolean))
+  return slugs
+}
+
 export const fetchProducts = async (params = {}) => {
   let query = supabase
     .from('products')

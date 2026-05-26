@@ -32,7 +32,10 @@
 
 @media (max-width: 768px) {
   .hero__bg img {
-    object-position: 65% top;
+    object-position: 75% top;
+  }
+  .hero__content {
+    bottom: 28px;
   }
 }
 
@@ -224,6 +227,12 @@
 }
 .cat-strip__item:hover .cat-strip__name { color: var(--cream-bg); }
 
+.cat-strip__item--disabled {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
 @media (max-width: 768px) {
   .cat-strip__grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 }
@@ -323,6 +332,11 @@
 
 @media (max-width: 768px) {
   .hero__headline { font-size: clamp(3rem, 12vw, 6rem); }
-  .cta-band__actions { flex-direction: column; align-items: flex-start; }
+  .cta-band__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .cta-band__btn { justify-content: center; }
   .cta-band__bg img { object-position: 70% center; }
 }

@@ -10,6 +10,12 @@
   z-index: 2;
 }
 
+@media (max-width: 768px) {
+  .scroll-indicator {
+    display: none;
+  }
+}
+
 .scroll-indicator__label {
   font-family: var(--font-display);
   font-size: 10px;

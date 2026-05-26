@@ -53,11 +53,21 @@ function ComingSoonThumb() {
   )
 }
 
+const CATEGORY_ORDER = ['truckers', 'a-frame', 'classic', 'baseball', 'snapback']
+
 function CategoryStrip({ categories, products }) {
   const catImages = products.reduce((acc, p) => {
     if (!acc[p.category_slug] && p.images?.[0]) acc[p.category_slug] = p.images[0]
     return acc
   }, {})
+
+  const activeSlugs = new Set(products.map(p => p.category_slug).filter(Boolean))
+
+  const sorted = [...categories].sort((a, b) => {
+    const ai = CATEGORY_ORDER.indexOf(a.slug)
+    const bi = CATEGORY_ORDER.indexOf(b.slug)
+    return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi)
+  })
 
   return (
     <section className="section cat-strip">
@@ -66,10 +76,11 @@ function CategoryStrip({ categories, products }) {
           <h2 className="heading-md reveal">Shop By Category</h2>
         </div>
         <div className="cat-strip__grid reveal">
-          {categories.map(cat => {
+          {sorted.map(cat => {
             const thumb = cat.image || catImages[cat.slug]
-            return (
-              <Link key={cat.id} to={`/category/${cat.slug}`} className="cat-strip__item">
+            const hasProducts = activeSlugs.has(cat.slug)
+            const inner = (
+              <>
                 <div className="cat-strip__img">
                   {thumb ? (
                     <img src={thumb} alt={cat.name} loading="lazy" />
@@ -79,7 +90,16 @@ function CategoryStrip({ categories, products }) {
                   <div className="cat-strip__overlay" />
                 </div>
                 <span className="cat-strip__name">{cat.name}</span>
+              </>
+            )
+            return hasProducts ? (
+              <Link key={cat.id} to={`/category/${cat.slug}`} className="cat-strip__item">
+                {inner}
               </Link>
+            ) : (
+              <div key={cat.id} className="cat-strip__item cat-strip__item--disabled">
+                {inner}
+              </div>
             )
           })}
         </div>
