@@ -5,10 +5,8 @@ const FIELDS = [
   { key: 'hero_article_name', label: 'Article Name',    placeholder: 'The Season\'s Crown' },
   { key: 'hero_sub_copy',     label: 'Sub Copy',        placeholder: 'Headwear crafted...', multiline: true },
   { key: 'hero_button_label', label: 'Button Label',    placeholder: 'Explore Collection' },
-  { key: 'whatsapp_number',   label: 'WhatsApp Number', placeholder: '6281234567890' },
+  { key: 'whatsapp_number',   label: 'WhatsApp Number', placeholder: '628112112122' },
   { key: 'instagram_url',     label: 'Instagram URL',   placeholder: 'https://instagram.com/...' },
-  { key: 'shopee_store_url',  label: 'Shopee Store URL',placeholder: 'https://shopee.co.id/...' },
-  { key: 'tiktok_url',        label: 'TikTok URL',      placeholder: 'https://tiktok.com/...' },
   { key: 'footer_tagline',    label: 'Footer Tagline',  placeholder: 'Premium Materials. Timeless Shape.' },
 ]
 

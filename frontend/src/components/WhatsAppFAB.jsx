@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { fetchHero } from '../api'
 
 export default function WhatsAppFAB() {
-  const [number, setNumber] = useState('6281234567890')
+  const [number, setNumber] = useState('628112112122')
 
   useEffect(() => {
     fetchHero()

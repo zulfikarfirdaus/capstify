@@ -4,7 +4,7 @@ import { adminFetchProducts, adminFetchCategories, adminFetchAnalytics } from '.
 export default function AdminOverview() {
   const [products,   setProducts]   = useState(0)
   const [categories, setCategories] = useState(0)
-  const [analytics,  setAnalytics]  = useState({ totals: { visits: 0, whatsapp: 0, shopee: 0, tiktok: 0 } })
+  const [analytics,  setAnalytics]  = useState({ totals: { visits: 0, whatsapp: 0 } })
 
   useEffect(() => {
     adminFetchProducts().then(d => setProducts(d.length)).catch(() => {})
@@ -35,10 +35,6 @@ export default function AdminOverview() {
         <div className="admin-stat-card">
           <div className="admin-stat-card__val">{t.whatsapp ?? 0}</div>
           <div className="admin-stat-card__label">WA Clicks (7d)</div>
-        </div>
-        <div className="admin-stat-card">
-          <div className="admin-stat-card__val">{(t.shopee ?? 0) + (t.tiktok ?? 0)}</div>
-          <div className="admin-stat-card__label">Shop Clicks (7d)</div>
         </div>
       </div>
     </div>

@@ -111,14 +111,7 @@ function CategoryStrip({ categories, products }) {
 function CTABand({ hero }) {
   const whatsappUrl = hero?.whatsapp_number
     ? `https://wa.me/${hero.whatsapp_number}`
-    : null
-
-  const channels = [
-    { label: 'WhatsApp',  href: whatsappUrl },
-    { label: 'Shopee',    href: hero?.shopee_store_url || null },
-    { label: 'Tokopedia', href: hero?.tokopedia_url || null },
-    { label: 'TikTok Shop', href: hero?.tiktok_url || null },
-  ].filter(c => c.href)
+    : 'https://wa.me/628112112122'
 
   return (
     <section className="cta-band">
@@ -134,21 +127,12 @@ function CTABand({ hero }) {
         <span className="cta-band__eyebrow">Order Direct</span>
         <h2 className="cta-band__headline">Wear The<br />Culture</h2>
         <p className="cta-band__sub">
-          Shop premium headwear directly through WhatsApp, Shopee, Tokopedia, and TikTok Shop — wherever you scroll, we're there.
+          Order premium headwear directly via WhatsApp — fast, personal, and hassle-free.
         </p>
         <div className="cta-band__actions">
-          {channels.length > 0 ? channels.map(c => (
-            <a key={c.label} href={c.href} target="_blank" rel="noopener noreferrer" className="cta-band__btn">
-              {c.label}
-            </a>
-          )) : (
-            <>
-              <span className="cta-band__btn">WhatsApp</span>
-              <span className="cta-band__btn">Shopee</span>
-              <span className="cta-band__btn">Tokopedia</span>
-              <span className="cta-band__btn">TikTok Shop</span>
-            </>
-          )}
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="cta-band__btn">
+            Let's Shop
+          </a>
         </div>
       </div>
     </section>
