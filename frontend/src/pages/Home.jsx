@@ -108,11 +108,7 @@ function CategoryStrip({ categories, products }) {
   )
 }
 
-function CTABand({ hero }) {
-  const whatsappUrl = hero?.whatsapp_number
-    ? `https://wa.me/${hero.whatsapp_number}`
-    : 'https://wa.me/628112112122'
-
+function CTABand() {
   return (
     <section className="cta-band">
       <div className="cta-band__bg">
@@ -124,15 +120,18 @@ function CTABand({ hero }) {
       </div>
       <div className="cta-band__overlay" />
       <div className="cta-band__content container">
-        <span className="cta-band__eyebrow">Order Direct</span>
-        <h2 className="cta-band__headline">Wear The<br />Culture</h2>
+        <span className="cta-band__eyebrow">Shop Now</span>
+        <h2 className="cta-band__headline">Premium Headwear<br />For The Culture</h2>
         <p className="cta-band__sub">
-          Order premium headwear directly via WhatsApp — fast, personal, and hassle-free.
+          Designed with purpose. Built to last.
         </p>
         <div className="cta-band__actions">
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="cta-band__btn">
-            Let's Shop
-          </a>
+          <Link to="/category/truckers" className="cta-band__btn">
+            Truckers
+          </Link>
+          <Link to="/category/a-frame" className="cta-band__btn">
+            A Frame
+          </Link>
         </div>
       </div>
     </section>
@@ -180,7 +179,7 @@ export default function Home() {
 
       <CategoryStrip categories={categories} products={allProducts} />
 
-      <CTABand hero={hero} />
+      <CTABand />
     </div>
   )
 }

@@ -7,7 +7,6 @@
 
 .contact-hero__title {
   color: var(--cream);
-  margin-top: 18px;
 }
 
 /* ── Contact Body ─────────────────────────────────────────── */
@@ -15,7 +14,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  border-top: 1px solid var(--border-dark);
+  border-top: none;
 }
 
 .contact-block {
@@ -23,6 +22,29 @@
   flex-direction: column;
   gap: 20px;
   padding: 56px 0;
+  align-items: flex-start;
+}
+
+/* ── Open in Maps button ────────────────────────────────── */
+.contact-map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 1px solid var(--border-dark);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.contact-map-btn:hover {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--cream);
 }
 
 .contact-block:first-child {
@@ -58,7 +80,7 @@
 /* ── WhatsApp block ──────────────────────────────────────── */
 .contact-wa-number {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
   letter-spacing: 0.04em;
   color: var(--black);
   line-height: 1;
@@ -69,19 +91,22 @@
   align-items: center;
   gap: 10px;
   align-self: flex-start;
-  padding: 14px 32px;
-  background: var(--black);
-  color: var(--cream);
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-dark);
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   border-radius: var(--radius);
-  transition: background var(--transition), color var(--transition);
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
 
 .contact-wa-btn:hover {
-  background: var(--dark);
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--cream);
 }
 
 /* ── Responsive ──────────────────────────────────────────── */

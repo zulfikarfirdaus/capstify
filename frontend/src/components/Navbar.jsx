@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
-import { Search, X, Menu, ShoppingCart } from 'lucide-react'
+import { Search, X, Menu, ShoppingCart, Phone } from 'lucide-react'
 import logoPng from '../assets/logo-capstify.png'
 import { fetchActiveCategorySlugs } from '../api'
 import { useCartStore } from '../store/cartStore'
@@ -105,6 +105,9 @@ export default function Navbar() {
                 {cartCount > 0 && (
                   <span className="navbar__cart-badge">{cartCount}</span>
                 )}
+              </NavLink>
+              <NavLink to="/contact" className="navbar__icon-btn" aria-label="Contact">
+                <Phone size={18} />
               </NavLink>
             </>
           )}

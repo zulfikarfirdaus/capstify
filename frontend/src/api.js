@@ -209,6 +209,54 @@ export const adminUpdateOrderStatus = async (orderId, status) => {
   if (error) throw error
 }
 
+export const adminFetchOrderDetail = async (orderId) => {
+  const { data: order, error } = await supabase
+    .from('orders')
+    .select('*')
+    .eq('order_id', orderId)
+    .single()
+  if (error || !order) return null
+
+  const { data: items } = await supabase
+    .from('order_items')
+    .select('*')
+    .eq('order_id', orderId)
+
+  return { ...order, items: items || [] }
+}
+
+export const submitPaymentConfirmation = async ({ orderId, senderName, amountSent, proofFile }) => {
+  const ext  = proofFile.name.split('.').pop()
+  const path = `${orderId}_${Date.now()}.${ext}`
+  const { error: uploadErr } = await supabase.storage
+    .from('payment-proofs')
+    .upload(path, proofFile)
+  if (uploadErr) throw uploadErr
+
+  const { data: { publicUrl } } = supabase.storage.from('payment-proofs').getPublicUrl(path)
+
+  const { error: insertErr } = await supabase.from('payment_confirmations').insert({
+    order_id:    orderId,
+    sender_name: senderName,
+    amount_sent: amountSent,
+    proof_url:   publicUrl,
+  })
+  if (insertErr) throw insertErr
+
+  await supabase.from('orders').update({ status: 'payment_uploaded' }).eq('order_id', orderId)
+}
+
+export const adminFetchPaymentConfirmation = async (orderId) => {
+  const { data } = await supabase
+    .from('payment_confirmations')
+    .select('*')
+    .eq('order_id', orderId)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .single()
+  return data || null
+}
+
 // ── Analytics ─────────────────────────────────────────────────────────────────
 
 export const trackVisit = async (page, productId = null) => {

@@ -41,15 +41,9 @@ export default function Footer() {
             )
           })}
         </nav>
-        <NavLink to="/contact" className="footer__contact-link">Contact Us</NavLink>
-        <div className="footer__social">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="Instagram">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <rect x="2" y="2" width="20" height="20" rx="5"/>
-              <circle cx="12" cy="12" r="5"/>
-              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-            </svg>
-          </a>
+        <div className="footer__right">
+          <NavLink to="/contact" className="footer__right-link">Contact Us</NavLink>
+          <a href="https://instagram.com/capstify" target="_blank" rel="noopener noreferrer" className="footer__right-link">Instagram</a>
         </div>
       </div>
       <div className="footer__bottom container">
