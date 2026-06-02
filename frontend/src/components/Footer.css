@@ -60,6 +60,18 @@
   pointer-events: none;
 }
 
+.footer__contact-link {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250, 245, 236, 0.5);
+  transition: color var(--transition);
+  align-self: flex-end;
+}
+
+.footer__contact-link:hover { color: var(--cream); }
+
 .footer__social {
   display: flex;
   justify-content: flex-end;

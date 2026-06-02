@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
-import { Search, X, Menu } from 'lucide-react'
+import { Search, X, Menu, ShoppingCart } from 'lucide-react'
 import logoPng from '../assets/logo-capstify.png'
 import { fetchActiveCategorySlugs } from '../api'
+import { useCartStore } from '../store/cartStore'
 import './Navbar.css'
 
 const CATEGORIES = [
@@ -19,6 +20,8 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen]       = useState(false)
   const [searchQuery, setSearchQuery]     = useState('')
   const [activeSlugs, setActiveSlugs]     = useState(new Set())
+  const items = useCartStore(s => s.items)
+  const cartCount = items.reduce((sum, i) => sum + i.quantity, 0)
 
   useEffect(() => {
     fetchActiveCategorySlugs().then(setActiveSlugs).catch(() => {})
@@ -97,6 +100,12 @@ export default function Navbar() {
               <button onClick={() => setSearchOpen(true)} className="navbar__icon-btn" aria-label="Search">
                 <Search size={18} />
               </button>
+              <NavLink to="/cart" className="navbar__icon-btn navbar__cart-btn" aria-label={`Cart (${cartCount})`}>
+                <ShoppingCart size={18} />
+                {cartCount > 0 && (
+                  <span className="navbar__cart-badge">{cartCount}</span>
+                )}
+              </NavLink>
             </>
           )}
           <button
@@ -115,6 +124,13 @@ export default function Navbar() {
           <X size={24} />
         </button>
         <nav className="navbar__overlay-nav">
+          <NavLink
+            to="/contact"
+            className="navbar__overlay-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            Contact Us
+          </NavLink>
           {CATEGORIES.map(cat => {
             const active = activeSlugs.has(cat.slug)
             return active ? (

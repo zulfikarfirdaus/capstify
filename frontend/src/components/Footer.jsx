@@ -41,6 +41,7 @@ export default function Footer() {
             )
           })}
         </nav>
+        <NavLink to="/contact" className="footer__contact-link">Contact Us</NavLink>
         <div className="footer__social">
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="footer__social-link" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -52,7 +53,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer__bottom container">
-        <span className="footer__copy">&copy; {year} Capstify. All rights reserved.</span>
+        <span className="footer__copy">&copy; {year} PT. Capstify Gaya Kreatif. All rights reserved.</span>
         <a href="https://spladestudio.com" target="_blank" rel="noopener noreferrer" className="footer__admin-link">Built by Splade Studio</a>
       </div>
     </footer>

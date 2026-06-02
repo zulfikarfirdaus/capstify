@@ -1,0 +1,108 @@
+/* ── Contact Hero ─────────────────────────────────────────── */
+.contact-hero {
+  background: var(--black);
+  padding: 140px 0 72px;
+  border-bottom: 1px solid rgba(250, 245, 236, 0.08);
+}
+
+.contact-hero__title {
+  color: var(--cream);
+  margin-top: 18px;
+}
+
+/* ── Contact Body ─────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border-dark);
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 56px 0;
+}
+
+.contact-block:first-child {
+  padding-right: 80px;
+  border-right: 1px solid var(--border);
+}
+
+.contact-block:last-child {
+  padding-left: 80px;
+}
+
+/* ── Address ─────────────────────────────────────────────── */
+.contact-address {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-style: normal;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.contact-address__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+/* ── WhatsApp block ──────────────────────────────────────── */
+.contact-wa-number {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 0.04em;
+  color: var(--black);
+  line-height: 1;
+}
+
+.contact-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  padding: 14px 32px;
+  background: var(--black);
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: background var(--transition), color var(--transition);
+}
+
+.contact-wa-btn:hover {
+  background: var(--dark);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .contact-hero {
+    padding: 120px 0 56px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-block:first-child {
+    padding-right: 0;
+    padding-bottom: 48px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-block:last-child {
+    padding-left: 0;
+    padding-top: 48px;
+  }
+}

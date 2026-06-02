@@ -11,6 +11,7 @@ import Home from './pages/Home'
 import Category from './pages/Category'
 import Product from './pages/Product'
 import Search from './pages/Search'
+import Contact from './pages/Contact'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 
@@ -40,6 +41,7 @@ export default function App() {
         <Route path="/category/:slug" element={<PublicLayout><Category /></PublicLayout>} />
         <Route path="/product/:slug"  element={<PublicLayout><Product /></PublicLayout>} />
         <Route path="/search"         element={<PublicLayout><Search /></PublicLayout>} />
+        <Route path="/contact"        element={<PublicLayout><Contact /></PublicLayout>} />
         <Route path="/admin/login"    element={<AdminLogin />} />
         <Route path="/admin/*"        element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
       </Routes>
