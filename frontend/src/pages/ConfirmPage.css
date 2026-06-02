@@ -1,0 +1,214 @@
+.confirm-page {
+  padding-top: 100px;
+  padding-bottom: var(--section-pad);
+  min-height: 100dvh;
+}
+
+.confirm-loading,
+.confirm-not-found {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--mid);
+}
+
+.confirm-not-found a {
+  color: var(--text);
+  border-bottom: 1px solid currentColor;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.confirm-container { max-width: 560px; }
+
+.confirm-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 32px;
+  transition: color var(--transition);
+}
+.confirm-back:hover { color: var(--text); }
+
+.confirm-header {
+  margin-bottom: 40px;
+}
+
+.confirm-header__eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.confirm-header__order-id {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 36px);
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.confirm-header__amount {
+  font-size: 15px;
+  color: var(--mid);
+}
+
+.confirm-header__amount strong {
+  color: var(--text);
+}
+
+/* ── Form ────────────────────────────────────────────────── */
+.confirm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.confirm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.confirm-field label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.confirm-field input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--cream-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text);
+  transition: border-color var(--transition);
+  box-sizing: border-box;
+}
+
+.confirm-field input:focus { outline: none; border-color: var(--text); }
+.confirm-field input.is-error { border-color: #c0392b; }
+.confirm-field__err { font-size: 12px; color: #c0392b; }
+
+/* ── Upload ──────────────────────────────────────────────── */
+.confirm-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 36px 24px;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  color: var(--mid);
+}
+
+.confirm-upload:hover {
+  border-color: var(--text);
+  background: #faf9f7;
+}
+
+.confirm-upload.is-error { border-color: #c0392b; }
+
+.confirm-upload__label {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.confirm-upload__hint {
+  font-size: 12px;
+  color: var(--mid);
+}
+
+/* ── Preview ─────────────────────────────────────────────── */
+.confirm-preview {
+  position: relative;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.confirm-preview img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  display: block;
+  background: #f5f3f0;
+}
+
+.confirm-preview__remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--black);
+  color: var(--cream-bg);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.confirm-preview__remove:hover { background: var(--dark); }
+
+.confirm-preview__name {
+  display: block;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--mid);
+  background: #faf9f7;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Submit ──────────────────────────────────────────────── */
+.confirm-error {
+  color: #c0392b;
+  font-size: 13px;
+}
+
+.confirm-submit {
+  width: 100%;
+  padding: 18px;
+  background: var(--black);
+  color: var(--cream-bg);
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.confirm-submit:hover:not(:disabled) { background: var(--dark); }
+.confirm-submit:disabled { opacity: 0.6; cursor: default; }

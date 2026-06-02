@@ -1,0 +1,154 @@
+.thankyou-page {
+  padding-top: 100px;
+  padding-bottom: var(--section-pad);
+  min-height: 100dvh;
+}
+
+.thankyou-loading {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--mid);
+}
+
+.thankyou-container {
+  max-width: 520px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.thankyou-icon {
+  color: #2d6a4f;
+  margin-bottom: 8px;
+}
+
+.thankyou-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.thankyou-order-id {
+  font-size: 15px;
+  color: var(--mid);
+}
+
+.thankyou-order-id strong {
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* ── Info card ───────────────────────────────────────────── */
+.thankyou-card {
+  width: 100%;
+  background: #f0faf4;
+  border: 1px solid #a8d5b5;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.thankyou-card__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #2d6a4f;
+}
+
+.thankyou-card__row svg { flex-shrink: 0; margin-top: 2px; }
+
+.thankyou-card__note {
+  font-size: 13px;
+  color: #52796f;
+  line-height: 1.6;
+  margin-left: 26px;
+}
+
+/* ── Order summary ───────────────────────────────────────── */
+.thankyou-summary {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.thankyou-summary__title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.thankyou-summary__items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.thankyou-summary__item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.thankyou-summary__qty { color: var(--mid); }
+
+.thankyou-summary__divider {
+  height: 1px;
+  background: var(--border);
+}
+
+.thankyou-summary__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--mid);
+}
+
+.thankyou-summary__row--total {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--text);
+}
+
+/* ── CTA ─────────────────────────────────────────────────── */
+.thankyou-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px;
+  background: var(--black);
+  color: var(--cream-bg);
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: background var(--transition);
+  margin-top: 8px;
+}
+
+.thankyou-cta:hover { background: var(--dark); }
