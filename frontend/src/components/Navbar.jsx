@@ -48,6 +48,7 @@ export default function Navbar() {
       navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`)
       setSearchQuery('')
       setSearchOpen(false)
+      setMenuOpen(false)
     }
   }
 
@@ -126,14 +127,18 @@ export default function Navbar() {
         <button className="navbar__overlay-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
           <X size={24} />
         </button>
+
+        <form className="navbar__overlay-search" onSubmit={handleSearch}>
+          <Search size={16} strokeWidth={1.8} />
+          <input
+            type="text"
+            placeholder="Search caps..."
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
+        </form>
+
         <nav className="navbar__overlay-nav">
-          <NavLink
-            to="/contact"
-            className="navbar__overlay-link"
-            onClick={() => setMenuOpen(false)}
-          >
-            Contact Us
-          </NavLink>
           {CATEGORIES.map(cat => {
             const active = activeSlugs.has(cat.slug)
             return active ? (
@@ -152,6 +157,15 @@ export default function Navbar() {
             )
           })}
         </nav>
+
+        <div className="navbar__overlay-bottom">
+          <NavLink to="/cart" className="navbar__overlay-bottom-link" onClick={() => setMenuOpen(false)}>
+            Cart{cartCount > 0 ? ` (${cartCount})` : ''}
+          </NavLink>
+          <NavLink to="/contact" className="navbar__overlay-bottom-link" onClick={() => setMenuOpen(false)}>
+            Contact Us
+          </NavLink>
+        </div>
       </div>
     </header>
   )

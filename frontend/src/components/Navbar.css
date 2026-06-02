@@ -142,6 +142,8 @@
 @media (max-width: 1024px) {
   .navbar__nav { display: none; }
   .navbar__burger { display: flex; }
+  .navbar__icon-btn { display: none; }
+  .navbar__search-form { display: none; }
   .navbar__inner {
     display: flex;
     justify-content: space-between;
@@ -156,11 +158,13 @@
   z-index: 200;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   padding: clamp(40px, 8vw, 80px);
+  padding-top: 96px;
   transform: translateX(100%);
   transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
 }
 
 .navbar__overlay.open { transform: translateX(0); }
@@ -177,11 +181,37 @@
   color: var(--text);
 }
 
+/* Search bar in overlay */
+.navbar__overlay-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-dark);
+  color: var(--mid);
+  flex-shrink: 0;
+}
+
+.navbar__overlay-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.10em;
+  color: var(--text);
+  width: 100%;
+}
+
+.navbar__overlay-search input::placeholder { color: var(--mid); }
+
 .navbar__overlay-nav {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 48px;
+  gap: 4px;
+  padding: 40px 0;
+  flex: 1;
 }
 
 .navbar__overlay-link {
@@ -196,6 +226,30 @@
 
 .navbar__overlay-link:hover,
 .navbar__overlay-link.active { color: var(--mid); }
+
+/* Bottom links: Cart + Contact */
+.navbar__overlay-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.navbar__overlay-bottom-link {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--mid);
+  line-height: 1.2;
+  transition: color var(--transition);
+}
+
+.navbar__overlay-bottom-link:hover,
+.navbar__overlay-bottom-link.active { color: var(--black); }
 
 .navbar__link--disabled {
   opacity: 0.3;
