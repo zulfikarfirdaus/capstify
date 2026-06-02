@@ -137,6 +137,78 @@ export const adminSaveSettings = async (settings) => {
   if (error) throw error
 }
 
+// ── Orders ────────────────────────────────────────────────────────────────────
+
+export const createOrder = async ({ customerName, customerEmail, customerPhone, customerAddress, items, paymentMethod, expiryHours = 24 }) => {
+  const totalAmount = items.reduce((sum, i) => sum + i.product.price * i.quantity, 0)
+  const paymentExpiresAt = new Date(Date.now() + expiryHours * 60 * 60 * 1000).toISOString()
+
+  const { count } = await supabase.from('orders').select('*', { count: 'exact', head: true })
+  const orderId = `CPY-${String((count || 0) + 1).padStart(4, '0')}`
+
+  const { error: orderErr } = await supabase
+    .from('orders')
+    .insert({
+      order_id: orderId,
+      customer_name: customerName,
+      customer_email: customerEmail,
+      customer_phone: customerPhone,
+      customer_address: customerAddress,
+      total_amount: totalAmount,
+      payment_method: paymentMethod,
+      payment_expires_at: paymentExpiresAt,
+    })
+  if (orderErr) throw orderErr
+
+  const orderItems = items.map(i => ({
+    order_id: orderId,
+    product_id: i.product.id,
+    product_name: i.product.name,
+    product_image: i.product.images?.[0] || null,
+    price: i.product.price,
+    quantity: i.quantity,
+    subtotal: i.product.price * i.quantity,
+  }))
+
+  const { error: itemsErr } = await supabase.from('order_items').insert(orderItems)
+  if (itemsErr) throw itemsErr
+
+  return orderId
+}
+
+export const fetchOrder = async (orderId) => {
+  const { data: order, error } = await supabase
+    .from('orders')
+    .select('*')
+    .eq('order_id', orderId)
+    .single()
+  if (error || !order) return null
+
+  const { data: items } = await supabase
+    .from('order_items')
+    .select('*')
+    .eq('order_id', orderId)
+
+  return { ...order, items: items || [] }
+}
+
+export const adminFetchOrders = async () => {
+  const { data, error } = await supabase
+    .from('orders')
+    .select('*, order_items(*)')
+    .order('created_at', { ascending: false })
+  if (error) throw error
+  return data || []
+}
+
+export const adminUpdateOrderStatus = async (orderId, status) => {
+  const { error } = await supabase
+    .from('orders')
+    .update({ status })
+    .eq('order_id', orderId)
+  if (error) throw error
+}
+
 // ── Analytics ─────────────────────────────────────────────────────────────────
 
 export const trackVisit = async (page, productId = null) => {

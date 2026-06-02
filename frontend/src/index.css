@@ -96,6 +96,19 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
 .body-serif { font-family: var(--font-serif); font-size: 15px; line-height: 1.75; color: var(--text); }
 
 /* ── Buttons ─────────────────────────────────────────────── */
+.btn-cart {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 18px 40px;
+  background: var(--cream-bg); color: var(--black);
+  font-family: var(--font-display); font-size: 16px; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1.5px solid var(--black); border-radius: var(--radius);
+  transition: background var(--transition), color var(--transition), border-color var(--transition); cursor: pointer;
+}
+.btn-cart:hover { background: #f0ede8; }
+.btn-cart--added { background: var(--black); color: var(--cream-bg); border-color: var(--black); }
+.btn-cart--added:hover { background: var(--dark); }
+
 .btn-wa {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   width: 100%; padding: 18px 40px;

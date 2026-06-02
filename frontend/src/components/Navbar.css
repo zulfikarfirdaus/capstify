@@ -223,3 +223,15 @@
 }
 
 .navbar__overlay-contact:hover { color: var(--text); }
+
+.navbar__cart-btn { position: relative; }
+.navbar__cart-badge {
+  position: absolute;
+  top: -6px; right: -6px;
+  min-width: 16px; height: 16px;
+  padding: 0 4px;
+  background: var(--black); color: var(--cream-bg);
+  font-family: var(--font-display);
+  font-size: 10px; line-height: 16px;
+  text-align: center; border-radius: 8px;
+}

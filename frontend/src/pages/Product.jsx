@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { MessageCircle, ArrowLeft } from 'lucide-react'
+import { MessageCircle, ArrowLeft, ShoppingCart, Check } from 'lucide-react'
 import { fetchProduct, fetchHero } from '../api'
 import { usePageView, trackClick } from '../hooks/useAnalytics'
+import { useCartStore } from '../store/cartStore'
 import './Product.css'
 
 function formatPrice(price) {
@@ -17,6 +18,8 @@ export default function Product() {
   const [waNumber, setWaNumber]       = useState('628112112122')
   const [activeImg, setActiveImg]     = useState(0)
   const [loading, setLoading]         = useState(true)
+  const [addedToCart, setAddedToCart] = useState(false)
+  const addItem = useCartStore(s => s.addItem)
 
   usePageView(`/product/${slug}`)
 
@@ -31,6 +34,12 @@ export default function Product() {
       .then(d => { if (d?.whatsapp_number) setWaNumber(d.whatsapp_number) })
       .catch(() => {})
   }, [slug])
+
+  const handleAddToCart = () => {
+    addItem(product)
+    setAddedToCart(true)
+    setTimeout(() => setAddedToCart(false), 2000)
+  }
 
   const handleWA = () => {
     if (product?.id) trackClick(product.id, 'whatsapp')
@@ -104,6 +113,15 @@ export default function Product() {
             )}
 
             <div className="product-info__ctas">
+              {product.price && (
+                <button
+                  className={`btn-cart${addedToCart ? ' btn-cart--added' : ''}`}
+                  onClick={handleAddToCart}
+                >
+                  {addedToCart ? <Check size={18} /> : <ShoppingCart size={18} />}
+                  {addedToCart ? 'Added to Cart' : 'Add to Cart'}
+                </button>
+              )}
               <button className="btn-wa" onClick={handleWA}>
                 <MessageCircle size={18} />
                 Order via WhatsApp

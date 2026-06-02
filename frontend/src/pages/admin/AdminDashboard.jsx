@@ -5,6 +5,7 @@ import AdminHero        from './sections/AdminHero'
 import AdminProducts    from './sections/AdminProducts'
 import AdminCategories  from './sections/AdminCategories'
 import AdminAnalytics   from './sections/AdminAnalytics'
+import AdminOrders      from './sections/AdminOrders'
 import './Admin.css'
 
 export default function AdminDashboard() {
@@ -17,6 +18,7 @@ export default function AdminDashboard() {
 
   const navLinks = [
     { to: '/admin',            label: 'Overview',   end: true },
+    { to: '/admin/orders',     label: 'Orders',     end: false },
     { to: '/admin/hero',       label: 'Hero',       end: false },
     { to: '/admin/products',   label: 'Products',   end: false },
     { to: '/admin/categories', label: 'Categories', end: false },
@@ -44,8 +46,9 @@ export default function AdminDashboard() {
 
       <main className="admin-main">
         <Routes>
-          <Route index        element={<AdminOverview />} />
-          <Route path="hero"       element={<AdminHero />} />
+          <Route index              element={<AdminOverview />} />
+          <Route path="orders"      element={<AdminOrders />} />
+          <Route path="hero"        element={<AdminHero />} />
           <Route path="products"   element={<AdminProducts />} />
           <Route path="categories" element={<AdminCategories />} />
           <Route path="analytics"  element={<AdminAnalytics />} />
