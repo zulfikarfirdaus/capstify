@@ -99,26 +99,26 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
 .btn-cart {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   width: 100%; padding: 18px 40px;
-  background: var(--cream-bg); color: var(--black);
+  background: var(--black); color: var(--cream-bg);
   font-family: var(--font-display); font-size: 16px; font-weight: 400;
   letter-spacing: 0.14em; text-transform: uppercase;
   border: 1.5px solid var(--black); border-radius: var(--radius);
   transition: background var(--transition), color var(--transition), border-color var(--transition); cursor: pointer;
 }
-.btn-cart:hover { background: #f0ede8; }
-.btn-cart--added { background: var(--black); color: var(--cream-bg); border-color: var(--black); }
-.btn-cart--added:hover { background: var(--dark); }
+.btn-cart:hover { background: var(--dark); border-color: var(--dark); }
+.btn-cart--added { background: var(--dark); color: var(--cream-bg); border-color: var(--dark); }
+.btn-cart--added:hover { background: var(--black); }
 
 .btn-wa {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   width: 100%; padding: 18px 40px;
-  background: var(--black); color: var(--cream-bg);
+  background: var(--cream-bg); color: var(--black);
   font-family: var(--font-display); font-size: 16px; font-weight: 400;
   letter-spacing: 0.14em; text-transform: uppercase;
   border: 1.5px solid var(--black); border-radius: var(--radius);
   transition: background var(--transition), color var(--transition); cursor: pointer;
 }
-.btn-wa:hover { background: var(--dark); border-color: var(--dark); }
+.btn-wa:hover { background: #f0ede8; }
 
 .btn-marketplace {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;

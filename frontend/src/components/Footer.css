@@ -73,7 +73,7 @@
   font-size: 13px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(250, 245, 236, 0.5);
+  color: rgba(250, 245, 236, 0.65);
   transition: color var(--transition);
 }
 
@@ -105,12 +105,22 @@
 
 @media (max-width: 768px) {
   .footer__top {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 16px;
+    align-items: start;
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+    align-items: center;
     text-align: center;
   }
-  .footer__brand { align-items: center; }
   .footer__logo { align-self: center; }
-  .footer__nav { flex-direction: column; align-items: center; }
-  .footer__right { align-items: center; }
+  .footer__nav {
+    align-items: center;
+  }
+  .footer__right {
+    align-items: center;
+    justify-self: center;
+  }
   .footer__bottom { flex-direction: column; gap: 10px; text-align: center; }
 }

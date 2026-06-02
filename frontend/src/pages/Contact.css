@@ -10,6 +10,10 @@
 }
 
 /* ── Contact Body ─────────────────────────────────────────── */
+.contact-body {
+  padding: 0;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -21,7 +25,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 56px 0;
+  padding: 48px 0;
   align-items: flex-start;
 }
 
@@ -121,13 +125,13 @@
 
   .contact-block:first-child {
     padding-right: 0;
-    padding-bottom: 48px;
+    padding-bottom: 40px;
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
 
   .contact-block:last-child {
     padding-left: 0;
-    padding-top: 48px;
+    padding-top: 40px;
   }
 }
