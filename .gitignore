@@ -12,6 +12,7 @@ api/.env
 
 # macOS
 .DS_Store
+._*
 
 # Logs
 *.log
