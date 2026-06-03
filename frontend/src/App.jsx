@@ -5,7 +5,6 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import PrivateRoute from './components/PrivateRoute'
-import WhatsAppFAB from './components/WhatsAppFAB'
 
 import Home from './pages/Home'
 import Category from './pages/Category'
@@ -32,7 +31,6 @@ function PublicLayout({ children }) {
       <Navbar />
       <main>{children}</main>
       <Footer />
-      <WhatsAppFAB />
     </>
   )
 }
